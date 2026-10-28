@@ -11,16 +11,11 @@ It runs two ways from the same code:
 
 ## Install
 
-**From SwarmUI** (once the extension is in Swarm's extension list): Server → Extensions → install **LayoutEditor**, then restart when Swarm asks.
-
-**Manually**:
-
 1. Clone this repo into `SwarmUI/src/Extensions/`:
-   `cd SwarmUI/src/Extensions && git clone https://github.com/ALT_ACCOUNT/SwarmUI-LayoutEditor`
-2. Rebuild Swarm, since extensions are compiled: create an empty file `SwarmUI/src/bin/must_rebuild`, then start Swarm with `launch-windows.bat`, `launch-linux.sh` or `launch-macos.sh`.
-3. The console prints `Layout Editor extension loaded.`
+   `cd SwarmUI/src/Extensions && git clone https://github.com/jambavant/SwarmUI-LayoutEditor`
+2. Restart SwarmUI. It builds the extension on startup and the console prints `Layout Editor extension loaded.`
 
-To update: `git pull` in the extension folder and restart Swarm. JS/CSS-only changes need no rebuild, but Swarm caches extension files in memory, so it must restart.
+To update, run `git pull` in the extension folder and restart SwarmUI.
 
 ## Using it
 
