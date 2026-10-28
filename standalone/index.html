@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Layout Editor</title>
+    <link rel="stylesheet" href="../Assets/core/le-editor.css">
+    <style>
+        :root {
+            --background: #141417;
+            --background-panel: #1d1d22;
+            --background-soft: #26262d;
+            --text: #e6e6ea;
+            --text-soft: #9d9daa;
+            --text-strong: #ffffff;
+            --light-border: #34343d;
+            --emphasis: #7c6cff;
+            --button-background: #2b2b33;
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --background: #f4f4f6;
+                --background-panel: #ffffff;
+                --background-soft: #ececf1;
+                --text: #1d1d22;
+                --text-soft: #62626e;
+                --text-strong: #000000;
+                --light-border: #d5d5dd;
+                --emphasis: #5b4bff;
+                --button-background: #f1f1f5;
+            }
+        }
+        html, body { margin: 0; height: 100%; background: var(--background); }
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+        #app { position: fixed; inset: 0; padding: 8px; }
+        .standalone-title { font-weight: 700; margin-right: 4px; color: var(--text-strong); white-space: nowrap; }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../Assets/core/le-model.js"></script>
+    <script src="../Assets/core/le-formats.js"></script>
+    <script src="../Assets/core/le-validate.js"></script>
+    <script src="../Assets/core/le-editor.js"></script>
+    <script>
+        // Standalone host: no generation, "Copy" puts the prompt on the clipboard.
+        // Paste it into SwarmUI, ComfyUI (as the positive prompt) or Forge Neo, with the same width and height.
+        const editor = new LayoutEditor.Editor(document.getElementById('app'), {
+            mode: 'standalone',
+            canGenerate: false,
+            applyLabel: 'Copy prompt',
+            onApply() {
+                editor.copyPrompt();
+            },
+            extraToolbar(tools) {
+                tools.insertBefore(Object.assign(document.createElement('span'), {
+                    className: 'standalone-title',
+                    textContent: 'Layout Editor'
+                }), tools.firstChild);
+            }
+        });
+        window.layoutEditor = editor;
+    </script>
+</body>
+</html>
